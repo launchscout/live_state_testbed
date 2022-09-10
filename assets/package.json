@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "phx-live-state": "file:../../live-state"
+  }
+}
