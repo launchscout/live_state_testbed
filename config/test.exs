@@ -20,9 +20,9 @@ config :phoenix, :plug_init_mode, :runtime
 config :wallaby,
   otp_app: :livestate_testbed,
   base_url: "http://localhost:4002",
-  chromedriver: [
-    headless: false
-  ]
+  # chromedriver: [
+  #   headless: false
+  # ]
 
 config :livestate_testbed, LivestateTestbedWeb.Endpoint,
   server: true
