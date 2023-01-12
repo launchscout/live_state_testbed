@@ -1,6 +1,6 @@
 import { html, css, LitElement } from 'lit'
 import { customElement, property, query, state } from 'lit/decorators.js'
-import { liveState, liveStateConfig } from 'phx-live-state';
+import { liveState, liveStateConfig, LiveStateError } from 'phx-live-state';
 
 /**
  * An example element.
@@ -14,8 +14,8 @@ export class ConnectErrorElement extends LitElement {
   
   constructor() {
     super();
-    this.addEventListener('livestate-error', (e: CustomEvent<{type: string}>) => {
-      this.errorDescription = e.detail.type;
+    this.addEventListener('livestate-error', (e: CustomEvent) => {
+      this.errorDescription = e.detail.kind;
     })
   }
 
