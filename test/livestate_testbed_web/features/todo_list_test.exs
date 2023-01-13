@@ -19,6 +19,7 @@ defmodule LivestateTestbedWeb.Features.TodoListTest do
     end)
   end
 
+  @tag :skip
   feature "react todo list", %{session: session} do
     session
     |> visit("/react")

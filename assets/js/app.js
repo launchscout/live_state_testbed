@@ -28,6 +28,6 @@ import topbar from "../vendor/topbar"
 
 import './todo-form.ts';
 import './todo-list-element.ts';
-import './react-todo';
+// import './react-todo';
 import './join-params';
 import './connect-error';

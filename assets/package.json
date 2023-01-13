@@ -5,10 +5,7 @@
   },
   "dependencies": {
     "lit": "^2.4.0",
-    "phx-live-state": "git://github.com/launchscout/phx-live-state",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "use-live-state": "file:../../live_state/use-live-state"
+    "phx-live-state": "git://github.com/launchscout/phx-live-state"
   },
   "devDependencies": {
     "typescript": "^4.6.4",
