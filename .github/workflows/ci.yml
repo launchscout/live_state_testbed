@@ -41,8 +41,8 @@ jobs:
         working-directory: live_state_testbed/assets
       - name: build testbed javascript
         run: mix esbuild default
-        working-directory: live_state_testbed/assets
+        working-directory: live_state_testbed
       - name: Run testbed integration tests
         run: mix test
-        working-directory: live_state_testbed/assets
+        working-directory: live_state_testbed
 
