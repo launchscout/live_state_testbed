@@ -48,7 +48,7 @@ defmodule LivestateTestbed.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:wallaby, "~> 0.29.1",
        git: "https://github.com/launchscout/wallaby.git", runtime: false, only: :test},
-      {:live_state, ">= 0.6.0", git: "https://github.com/launchscout/live_state"}
+      {:live_state, ">= 0.6.0", path: "../live_state"}
     ]
   end
 

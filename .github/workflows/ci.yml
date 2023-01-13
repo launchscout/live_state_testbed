@@ -8,30 +8,41 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-      - name: Checkout project
+      - name: Checkout testbed
         uses: actions/checkout@v3
+        with:
+          path: live_state_testbed
+      - name: Checkout live_state
+        uses: actions/checkout@v3
+        with:
+          repository: launchscout/live_state
+          path: live_state
+      - name: Checkout phx-live-state
+        uses: actions/checkout@v3
+        with:
+          repository: launchscout/phx-live-state
+          path: phx-live-state
       - name: Set up Elixir
         uses: erlef/setup-beam@v1
         with:
           otp-version: '25.1' # Define the OTP version [required]
           elixir-version: '1.14.0' # Define the elixir version [required]
-      - name: Restore dependencies cache
-        uses: actions/cache@v2
-        with:
-          path: live_state/deps
-          key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
-          restore-keys: ${{ runner.os }}-mix-
-      - uses: actions/cache@v1
-        name: Cache build
-        with:
-          path: live_state/_build
-          key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
-      - name: Install dependencies
-        run: mix deps.get
-      - name: npm install assets
+      - name: install phx-live-state assets
         run: npm install
-        working-directory: assets
-      - name: build javascript
+        working-directory: phx-live-state
+      - name: build phx-live-state
+        run: npm run build
+        working-directory: phx-live-state
+      - name: Install testbed dependencies
+        run: mix deps.get
+        working-directory: live_state_testbed
+      - name: install testbed assets
+        run: npm install
+        working-directory: live_state_testbed/assets
+      - name: build testbed javascript
         run: mix esbuild default
+        working-directory: live_state_testbed/assets
       - name: Run testbed integration tests
         run: mix test
+        working-directory: live_state_testbed/assets
+
