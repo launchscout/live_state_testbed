@@ -21,6 +21,7 @@ defmodule LivestateTestbedWeb.Router do
     get "/react", PageController, :react
     get "/join_params", PageController, :join_params
     get "/errors", PageController, :errors
+    get "/alpine_demo", PageController, :alpine_demo
   end
 
   # Other scopes may use custom stacks.

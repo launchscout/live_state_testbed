@@ -20,6 +20,10 @@ defmodule LivestateTestbedWeb.PageController do
     conn |> assign(:url, url()) |> render("errors.html")
   end
 
+  def alpine_demo(conn, _params) do
+    conn |> render("alpine_demo.html")
+  end
+
   defp url() do
     "#{String.replace(Endpoint.url(), "http:", "ws:")}/socket"
     |> IO.inspect(label: "building livestate url")
