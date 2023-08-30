@@ -8,15 +8,15 @@ defmodule LivestateTestbedWeb.Features.TodoListTest do
     session
     |> visit("/")
     |> assert_text("todo list")
-    |> within_shadow_dom("todo-form", fn shadow_dom ->
-      shadow_dom
-      |> fill_in(css("input[name='todo']"), with: "Do a thing")
-      |> click(css("button"))
-    end)
-    |> within_shadow_dom("todo-list", fn shadow_dom ->
-      shadow_dom
-      |> assert_has(css("li", text: "Do a thing"))
-    end)
+    |> find(css("todo-form"))
+    |> shadow_root()
+    |> fill_in(css("input[name='todo']"), with: "Do a thing")
+    |> click(css("button"))
+
+    session
+    |> find(css("todo-list"))
+    |> shadow_root()
+    |> assert_has(css("li", text: "Do a thing"))
   end
 
   @tag :skip

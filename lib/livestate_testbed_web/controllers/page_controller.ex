@@ -16,6 +16,10 @@ defmodule LivestateTestbedWeb.PageController do
     conn |> assign(:url, url()) |> render("join_params.html")
   end
 
+  def patchy(conn, _params) do
+    conn |> assign(:url, url()) |> render("patchy.html")
+  end
+
   def errors(conn, _params) do
     conn |> assign(:url, url()) |> render("errors.html")
   end

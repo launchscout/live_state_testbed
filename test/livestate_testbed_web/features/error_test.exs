@@ -7,10 +7,8 @@ defmodule LivestateTestbedWeb.Features.ErrorTest do
   feature "join params", %{session: session} do
     session
     |> visit("/errors")
-    |> within_shadow_dom("connect-error", fn shadow_dom ->
-      shadow_dom
-      |> assert_has(css("div", text: "error"))
-    end)
+    |> find(css("connect-error"))
+    |> shadow_root()
+    |> assert_has(css("div", text: "error"))
   end
-
 end

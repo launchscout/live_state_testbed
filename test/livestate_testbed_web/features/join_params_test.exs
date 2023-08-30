@@ -7,10 +7,8 @@ defmodule LivestateTestbedWeb.Features.JoinParamsTest do
   feature "join params", %{session: session} do
     session
     |> visit("/join_params")
-    |> within_shadow_dom("join-params", fn shadow_dom ->
-      shadow_dom
-      |> assert_has(css("div", text: "foo"))
-    end)
+    |> find(css("join-params"))
+    |> shadow_root()
+    |> assert_has(css("div", text: "foo"))
   end
-
 end
