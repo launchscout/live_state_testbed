@@ -1,6 +1,6 @@
 import { state } from 'lit/decorators';
 import React, { Component } from 'react';
-import useLiveState from 'use-live-state';
+import useLiveState from './useLiveState';
 
 
 export const TodoList = () => {

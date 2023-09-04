@@ -5,7 +5,9 @@
   },
   "dependencies": {
     "lit": "^2.4.0",
-    "phx-live-state": "file:../../phx-live-state"
+    "phx-live-state": "file:../../phx-live-state",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "typescript": "^4.6.4",
