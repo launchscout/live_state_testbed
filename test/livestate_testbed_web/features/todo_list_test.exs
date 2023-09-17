@@ -12,6 +12,7 @@ defmodule LivestateTestbedWeb.Features.TodoListTest do
     |> shadow_root()
     |> fill_in(css("input[name='todo']"), with: "Do a thing")
     |> click(css("button"))
+    |> assert_has(css("button[disabled]"))
 
     session
     |> find(css("todo-list"))

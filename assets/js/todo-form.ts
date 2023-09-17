@@ -1,5 +1,5 @@
 import { html, css, LitElement } from 'lit'
-import { customElement, property, query } from 'lit/decorators.js'
+import { customElement, state, query } from 'lit/decorators.js'
 import { liveState } from 'phx-live-state';
 
 /**
@@ -11,7 +11,8 @@ import { liveState } from 'phx-live-state';
 @customElement('todo-form')
 @liveState({
   events: {
-    send: ['add_todo']
+    send: ['add_todo'],
+    receive: ['livestate-change']
   },
   context: 'todoLiveState'
 })
@@ -20,16 +21,27 @@ export class TodoFormElement extends LitElement {
   @query("input[name='todo']")
   todoInput: HTMLInputElement | undefined;
 
+  @state()
+  sending: Boolean = false;
+
+  constructor() {
+    super();
+    this.addEventListener('livestate-change', () => {
+      this.sending = false;
+    })
+  }
+
   render() {
     return html`
       <div>
         <input name="todo" />
-        <button @click=${this.addTodo}>Add Todo</button>
+        <button @click=${this.addTodo} ?disabled=${this.sending}>Add Todo</button>
       </div>
     `
   }
 
   addTodo(_event : Event) {
+    this.sending = true;
     this.dispatchEvent(new CustomEvent('add_todo', {detail: {todo: this.todoInput!.value}}));
     this.todoInput!.value = '';
   }

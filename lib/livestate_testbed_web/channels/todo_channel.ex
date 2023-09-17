@@ -6,6 +6,8 @@ defmodule LivestateTestbedWeb.TodoChannel do
   end
 
   def handle_event("add_todo", %{"todo" => todo}, %{todos: todos}) do
+    :timer.sleep(500)
+    IO.inspect("adding todo #{todo}")
     {:noreply, %{todos: todos ++ [todo]}}
   end
 end
