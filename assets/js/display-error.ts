@@ -8,14 +8,22 @@ import { liveState, liveStateConfig, LiveStateError } from 'phx-live-state';
  * @slot - This element has a slot
  * @csspart button - The button
  */
-@customElement('connect-error')
-@liveState({topic: 'garbage', url: 'ws://localhost:4001/socket', events: {receive: ['livestate-error']}})
+@customElement('display-error')
+@liveState({events: {receive: ['livestate-error']}})
 export class ConnectErrorElement extends LitElement {
   
+  @liveStateConfig('topic')
+  @property()
+  topic: string = '';
+
+  @property()
+  @liveStateConfig('url')
+  url: string = '';
+
   constructor() {
     super();
     this.addEventListener('livestate-error', (e: CustomEvent) => {
-      this.errorDescription = e.detail.kind;
+      this.errorDescription = e.detail.message;
     })
   }
 

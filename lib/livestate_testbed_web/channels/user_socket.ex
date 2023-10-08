@@ -10,6 +10,7 @@ defmodule LivestateTestbedWeb.UserSocket do
 
   channel "todo:*", LivestateTestbedWeb.TodoChannel
   channel "join_params", LivestateTestbedWeb.JoinParamsChannel
+  channel "init_error", LivestateTestbedWeb.InitErrorChannel
   channel "patchy", LivestateTestbedWeb.PatchChannel
 
   # Socket params are passed from the client and can

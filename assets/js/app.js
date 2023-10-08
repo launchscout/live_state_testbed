@@ -31,4 +31,4 @@ import './todo-list-element.ts';
 // import './react-todo';
 import './join-params';
 import './patch-thing';
-import './connect-error';
+import './display-error';

@@ -4,11 +4,19 @@ defmodule LivestateTestbedWeb.Features.ErrorTest do
 
   import Wallaby.Query
 
-  feature "join params", %{session: session} do
+  feature "connect error", %{session: session} do
     session
     |> visit("/errors")
-    |> find(css("connect-error"))
+    |> find(css("display-error#connect"))
     |> shadow_root()
-    |> assert_has(css("div", text: "error"))
+    |> assert_has(css("div", text: "unmatched topic"))
+  end
+
+  feature "init error", %{session: session} do
+    session
+    |> visit("/errors")
+    |> find(css("display-error#init"))
+    |> shadow_root()
+    |> assert_has(css("div", text: "You suck"))
   end
 end
