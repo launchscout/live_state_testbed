@@ -52,7 +52,7 @@ defmodule LivestateTestbed.MixProject do
        runtime: false,
        only: :test},
       {:live_state, ">= 0.6.0", path: "../live_state"},
-      {:extism, "~> 1.0.0-rc1"}
+      {:extism, "~> 1.0.0-rc1", git: "https://github.com/extism/elixir-sdk", branch: "fix-error-handling-issue"}
     ]
   end
 

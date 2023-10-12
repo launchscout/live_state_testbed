@@ -1,8 +1,16 @@
 
-export function foo() {
-  let input = JSON.parse(Host.inputString());
-  const output = {
-    stuff: input.stuff + " and moar"
-  }
-  Host.outputString(JSON.stringify(output));
-}
+import { wrap } from "./wrap";
+
+export const init = wrap(function() {
+  return { foo: "bar"};
+});
+
+export const increaseFoo = wrap(function(payload, state) {
+  return { foo: state.foo + payload.foo};
+});
+
+// export const increaseFoo({}) {
+
+// }
+
+
