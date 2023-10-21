@@ -11,7 +11,7 @@ import { liveState } from 'phx-live-state';
 @customElement('todo-form')
 @liveState({
   events: {
-    send: ['add_todo'],
+    send: ['addTodo'],
     receive: ['livestate-change']
   },
   context: 'todoLiveState'
@@ -42,7 +42,7 @@ export class TodoFormElement extends LitElement {
 
   addTodo(_event : Event) {
     this.sending = true;
-    this.dispatchEvent(new CustomEvent('add_todo', {detail: {todo: this.todoInput!.value}}));
+    this.dispatchEvent(new CustomEvent('addTodo', {detail: {todo: this.todoInput!.value}}));
     this.todoInput!.value = '';
   }
 }

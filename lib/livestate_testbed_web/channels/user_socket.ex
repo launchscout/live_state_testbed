@@ -8,7 +8,7 @@ defmodule LivestateTestbedWeb.UserSocket do
 
   ## Channels
 
-  channel "todo:*", LivestateTestbedWeb.TodoChannel
+  channel "todo:*", LivestateTestbedWeb.JsWasmChannel
   channel "join_params", LivestateTestbedWeb.JoinParamsChannel
   channel "patchy", LivestateTestbedWeb.PatchChannel
   channel "wasm", LivestateTestbedWeb.JsWasmChannel

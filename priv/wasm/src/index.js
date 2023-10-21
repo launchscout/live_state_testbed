@@ -2,15 +2,11 @@
 import { wrap } from "./wrap";
 
 export const init = wrap(function() {
-  return { foo: "bar"};
+  return { todos: ["Hello", "WASM"]};
 });
 
-export const increaseFoo = wrap(function(payload, state) {
-  return { foo: state.foo + payload.foo};
+export const addTodo = wrap(function({ todo }, { todos }) {
+  return { todos: [`${todo} from WASM!`, ...todos]};
 });
-
-// export const increaseFoo({}) {
-
-// }
 
 
