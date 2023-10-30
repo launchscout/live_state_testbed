@@ -51,7 +51,8 @@ defmodule LivestateTestbed.MixProject do
        branch: "shadow-dom",
        runtime: false,
        only: :test},
-      {:live_state, ">= 0.6.0", path: "../live_state"}
+      {:live_state, ">= 0.6.0", path: "../live_state"},
+      {:rustler, ">= 0.0.0"}
     ]
   end
 

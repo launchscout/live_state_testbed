@@ -32,3 +32,4 @@ livestate_testbed-*.tar
 npm-debug.log
 /assets/node_modules/
 
+priv/native
