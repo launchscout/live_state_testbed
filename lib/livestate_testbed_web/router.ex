@@ -21,6 +21,7 @@ defmodule LivestateTestbedWeb.Router do
     get "/react", PageController, :react
     get "/join_params", PageController, :join_params
     get "/patchy", PageController, :patchy
+    get "/markup_test", PageController, :markup_test
     get "/errors", PageController, :errors
   end
 

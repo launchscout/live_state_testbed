@@ -20,12 +20,16 @@ defmodule LivestateTestbedWeb.PageController do
     conn |> assign(:url, url()) |> render("patchy.html")
   end
 
+  def markup_test(conn, _params) do
+    conn |> assign(:url, url()) |> render("markup_test.html")
+  end
+
   def errors(conn, _params) do
     conn |> assign(:url, url()) |> render("errors.html")
   end
 
   defp url() do
-    "#{String.replace(Endpoint.url(), "http:", "ws:")}/socket"
+    "#{Endpoint.url() |> String.replace("http:", "ws:") |> String.replace("https:", "wss:")}/socket"
     |> IO.inspect(label: "building livestate url")
   end
 end

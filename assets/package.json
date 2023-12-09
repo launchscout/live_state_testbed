@@ -4,7 +4,10 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
+    "@github/template-parts": "^0.5.4",
+    "jexpr": "^1.0.0-pre.4",
     "lit": "^2.4.0",
+    "stampino": "git@github.com:jogibear9988/stampino.git",
     "phx-live-state": "file:../../phx-live-state"
   },
   "devDependencies": {
