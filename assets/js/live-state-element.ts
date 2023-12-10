@@ -1,31 +1,56 @@
-import { TemplateInstance } from '@github/template-parts'
-import { parse, EvalAstFactory } from 'jexpr';
-const astFactory = new EvalAstFactory();
-import type { TemplatePart, TemplateTypeInit } from '@github/template-parts';
+import { prepareTemplate, evaluateTemplate } from './stampino';
+import { LitElement, PropertyValueMap } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
+import { liveState, liveStateConfig } from 'phx-live-state';
 
-const processor = {
-  processCallback(_: TemplateInstance, parts: Iterable<TemplatePart>, params: unknown): void {
-    if (typeof params !== 'object' || !params) return
-    for (const part of parts) {
-      const expr = parse(part.expression, astFactory);
-      part.value = expr?.evaluate(params);
-    }
+@customElement('live-state')
+@liveState({
+  events: {
+    receive: ['livestate-change']
   }
-};
+})
+export class LiveStateElement extends LitElement {
 
+  @property()
+  @liveStateConfig('url')
+  url: string = '';
 
-export class LiveStateElement extends HTMLElement {
+  @property()
+  @liveStateConfig('topic')
+  topic: string = '';
 
-  templateInstances: TemplateInstance[] = [];
+  template;
 
-  connectedCallback() {
-    this.querySelectorAll('template[livestate]').forEach(tpl => {
-      const instance = new TemplateInstance((tpl as HTMLTemplateElement), { person: { firstName: 'Bob', lastName: 'Jones' } }, processor);
-      this.templateInstances.push(instance);
-      this.appendChild(instance);
-    });
+  constructor() {
+    super();
+    this.addEventListener('livestate-change', (e) => {
+      console.debug((e as CustomEvent).detail);
+      this.requestUpdate();
+    })
+  }
+
+  firstUpdated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    const templateElement = this.querySelector(':scope > template');
+    this.template = prepareTemplate(templateElement as HTMLTemplateElement);
+  }
+  
+  send(name) {
+    const doSend = (e) => {
+      if (e instanceof SubmitEvent) {
+        const form = e.target as HTMLFormElement;
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        this['liveState'].pushEvent(name, data);
+      } else {
+        this['liveState'].pushEvent(name, {})
+      }
+      console.log(name, e); e.preventDefault();
+    }
+    return doSend;
+  }
+
+  render() {
+    return this.template ? this.template({ ...this['liveState'].state, send: this.send.bind(this) }) : ``;
   }
 
 }
-
-window.customElements.define('live-state', LiveStateElement);

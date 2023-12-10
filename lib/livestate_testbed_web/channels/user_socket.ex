@@ -9,6 +9,7 @@ defmodule LivestateTestbedWeb.UserSocket do
   ## Channels
 
   channel "todo:*", LivestateTestbedWeb.TodoChannel
+  channel "people", LivestateTestbedWeb.PeopleChannel
   channel "join_params", LivestateTestbedWeb.JoinParamsChannel
   channel "init_error", LivestateTestbedWeb.InitErrorChannel
   channel "patchy", LivestateTestbedWeb.PatchChannel

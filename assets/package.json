@@ -7,7 +7,8 @@
     "@github/template-parts": "^0.5.4",
     "jexpr": "^1.0.0-pre.4",
     "lit": "^2.4.0",
-    "stampino": "git@github.com:jogibear9988/stampino.git",
+    "lit-html": "^3.0.0",
+    "trusted-types": "^2.0.0",
     "phx-live-state": "file:../../phx-live-state"
   },
   "devDependencies": {

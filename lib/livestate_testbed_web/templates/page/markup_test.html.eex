@@ -1,0 +1,23 @@
+<live-state url="<%= @url %>" topic="people">
+  <template>
+    <ul>
+      <template type="repeat" repeat="{{people}}">
+        <li>{{item.firstName}}<span> </span>{{item.lastName}}</li>
+      </template>
+    </ul>
+    <button @click={{send('add-person')}}>Add Person</button>
+    <template type="if" if="{{adding}}">
+      <form @submit={{send('create-person')}}>
+        <div>
+          <label>First Name</label>
+          <input name="firstName" .value={{newPerson.firstName}} />
+        </div>
+        <div>
+          <label>Last Name</label>
+          <input name="lastName" .value={{newPerson.lastName}} />
+        </div>
+        <button type="submit">Create Person</button>
+      </form>
+    </template>
+  </template>
+</live-state>
