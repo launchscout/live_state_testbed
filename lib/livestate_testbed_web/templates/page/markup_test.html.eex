@@ -1,23 +1,39 @@
 <live-state url="<%= @url %>" topic="people">
   <template>
-    <ul>
-      <template type="repeat" repeat="{{people}}">
-        <li>{{item.firstName}}<span> </span>{{item.lastName}}</li>
-      </template>
-    </ul>
+    Showing {{pagination.start}} to {{pagination.end}}
+    <table>
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <template type="repeat" repeat="{{people}}">
+          <tr>
+            <td>{{item.firstName}}</td>
+            <td>{{item.lastName}}</td>
+            <td><button @click={{send('edit')}} data-person-id={{item.id}}>Edit</button></td>
+          </tr>
+        </template>
+      </tbody>
+    </table>
+    <a href="#" @click={{send('next')}}>Next</a>
     <button @click={{send('add-person')}}>Add Person</button>
-    <template type="if" if="{{adding}}">
+    <dialog ?open="{{adding}}">
       <form @submit={{send('create-person')}}>
         <div>
           <label>First Name</label>
-          <input name="firstName" .value={{newPerson.firstName}} />
+          {{person.firstName}}
+          <input name="firstName" .value={{person.firstName}} value="{{person.firstName}}" />
         </div>
         <div>
           <label>Last Name</label>
-          <input name="lastName" .value={{newPerson.lastName}} />
+          <input name="lastName" .value={{person.lastName}} />
         </div>
         <button type="submit">Create Person</button>
       </form>
-    </template>
+    </dialog>
   </template>
 </live-state>

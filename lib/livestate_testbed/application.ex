@@ -10,6 +10,7 @@ defmodule LivestateTestbed.Application do
     children = [
       # Start the Telemetry supervisor
       LivestateTestbedWeb.Telemetry,
+      LivestateTestbed.Repo,
       # Start the PubSub system
       {Phoenix.PubSub, name: LivestateTestbed.PubSub},
       # Start the Endpoint (http/https)

@@ -23,6 +23,9 @@ config :livestate_testbed, LivestateTestbedWeb.Endpoint,
 # at the `config/runtime.exs`.
 config :livestate_testbed, LivestateTestbed.Mailer, adapter: Swoosh.Adapters.Local
 
+config :livestate_testbed,
+      ecto_repos: [LivestateTestbed.Repo]
+
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false
 

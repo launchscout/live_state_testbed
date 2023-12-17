@@ -427,7 +427,7 @@ const makeLitTemplate = (template: HTMLTemplateElement): StampinoTemplate => {
               _handlers: TemplateHandlers,
               _renderers: Renderers
             ) => {
-              return exprs.map((expr) => expr.evaluate(model));
+              exprs.length > 1 ? exprs.map((expr) => expr.evaluate(model)) : exprs[0].evaluate(model);
             },
           });
         }

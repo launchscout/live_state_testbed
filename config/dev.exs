@@ -1,5 +1,11 @@
 import Config
 
+config :livestate_testbed, LivestateTestbed.Repo,
+  database: "livestate_testbed_dev",
+  username: "postgres",
+  password: "postgres",
+  hostname: "localhost"
+
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #

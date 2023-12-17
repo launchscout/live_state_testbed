@@ -35,6 +35,7 @@ export class LiveStateElement extends LitElement {
   }
   
   send(name) {
+    console.log(`calling send with ${name}`);
     const doSend = (e) => {
       if (e instanceof SubmitEvent) {
         const form = e.target as HTMLFormElement;
@@ -42,10 +43,12 @@ export class LiveStateElement extends LitElement {
         const data = Object.fromEntries(formData.entries());
         this['liveState'].pushEvent(name, data);
       } else {
-        this['liveState'].pushEvent(name, {})
+        this['liveState'].pushEvent(name, e.target.dataset)
       }
-      console.log(name, e); e.preventDefault();
+      console.log(name, e);
+      e.preventDefault();
     }
+    console.log(typeof doSend);
     return doSend;
   }
 
