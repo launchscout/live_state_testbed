@@ -1,39 +1,35 @@
-<live-state url="<%= @url %>" topic="people">
-  <template>
-    Showing {{pagination.start}} to {{pagination.end}}
-    <table>
-      <thead>
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <template type="repeat" repeat="{{people}}">
-          <tr>
-            <td>{{item.firstName}}</td>
-            <td>{{item.lastName}}</td>
-            <td><button @click={{send('edit')}} data-person-id={{item.id}}>Edit</button></td>
-          </tr>
-        </template>
-      </tbody>
-    </table>
-    <a href="#" @click={{send('next')}}>Next</a>
-    <button @click={{send('add-person')}}>Add Person</button>
-    <dialog ?open="{{adding}}">
-      <form @submit={{send('create-person')}}>
-        <div>
-          <label>First Name</label>
-          {{person.firstName}}
-          <input name="firstName" .value={{person.firstName}} value="{{person.firstName}}" />
-        </div>
-        <div>
-          <label>Last Name</label>
-          <input name="lastName" .value={{person.lastName}} />
-        </div>
-        <button type="submit">Create Person</button>
-      </form>
-    </dialog>
-  </template>
-</live-state>
+
+
+
+<templize-element url="ws://localhost:4000/socket" topic="people">
+  <table>
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr :each="{{person in people}}">
+        <td>{{person.firstName}}</td>
+        <td>{{person.lastName}}</td>
+        <td><button onclick={{send('edit-person')}} data-person-id={{person.id}}>Edit</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <button onclick={{send('add-person')}}>Add Person</button>
+  <dialog open="{{editing}}">
+    <form onsubmit={{send('save-person')}}>
+      <div>
+        <label>First Name</label>
+        <input name="firstName" value="{{person.firstName}}" />
+      </div>
+      <div>
+        <label>Last Name</label>
+        <input name="lastName" value={{person.lastName}} />
+      </div>
+      <button type="submit">Create Person</button>
+    </form>
+  </dialog>
+</templize-element>
