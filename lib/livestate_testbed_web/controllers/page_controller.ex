@@ -20,8 +20,8 @@ defmodule LivestateTestbedWeb.PageController do
     conn |> assign(:url, url()) |> render("patchy.html")
   end
 
-  def markup_test(conn, _params) do
-    conn |> assign(:url, url()) |> render("markup_test.html")
+  def live_template(conn, _params) do
+    conn |> assign(:url, url()) |> render("live_template.html")
   end
 
   def errors(conn, _params) do

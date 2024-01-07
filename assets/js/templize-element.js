@@ -1,5 +1,6 @@
-import templize from 'templize';
+import templize, {directive} from './templize';
 import LiveState from 'phx-live-state';
+import { TemplateInstance } from 'template-parts';
 
 const makeSound = (sound) => (e) => console.log(sound, e)
 
@@ -27,7 +28,13 @@ export class TemplizeElement extends HTMLElement {
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
       this['liveState'].pushEvent(eventName, data);
+    } else if (e instanceof InputEvent) {
+      const form = e.target.form;
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      this['liveState'].pushEvent(eventName, data);
     } else {
+      console.log(e);
       this['liveState'].pushEvent(eventName, e.target.dataset)
     }
     console.log(name, e);

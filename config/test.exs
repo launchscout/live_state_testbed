@@ -10,9 +10,15 @@ config :livestate_testbed, LivestateTestbedWeb.Endpoint,
     # node: ["node_modules/vite/bin/vite.js", "build", "--watch", cd: "assets"]
   ]
 
+config :livestate_testbed, LivestateTestbed.Repo,
+  database: "livestate_testbed_test",
+  username: "postgres",
+  password: "postgres",
+  hostname: "localhost",
+  pool: Ecto.Adapters.SQL.Sandbox
+
 # In test we don't send emails.
-config :livestate_testbed, LivestateTestbed.Mailer,
-  adapter: Swoosh.Adapters.Test
+config :livestate_testbed, LivestateTestbed.Mailer, adapter: Swoosh.Adapters.Test
 
 # Print only warnings and errors during test
 config :logger, level: :warn
@@ -23,6 +29,7 @@ config :phoenix, :plug_init_mode, :runtime
 config :wallaby,
   otp_app: :livestate_testbed,
   base_url: "http://localhost:4002"
+  # max_wait_time: 60_000,
   # chromedriver: [
   #   headless: false
   # ]

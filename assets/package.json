@@ -10,7 +10,8 @@
     "lit-html": "^3.1.0",
     "phx-live-state": "file:../../phx-live-state",
     "templize": "^2.4.4",
-    "trusted-types": "^2.0.0"
+    "trusted-types": "^2.0.0",
+    "live-template": "file:../../live-template"
   },
   "devDependencies": {
     "typescript": "^4.6.4",

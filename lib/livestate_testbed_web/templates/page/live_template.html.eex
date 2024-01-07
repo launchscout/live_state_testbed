@@ -1,7 +1,7 @@
 
 
 
-<templize-element url="ws://localhost:4000/socket" topic="people">
+<live-template url="<%= @url %>" topic="people">
   <table>
     <thead>
       <tr>
@@ -18,18 +18,18 @@
       </tr>
     </tbody>
   </table>
-  <button onclick={{send('add-person')}}>Add Person</button>
+  <button onclick={{send('add-person')}} data-person="add">Add Person</button>
   <dialog open="{{editing}}">
-    <form onsubmit={{send('save-person')}}>
+    <form onsubmit={{send('save-person')}} oninput={{send('input')}}>
       <div>
         <label>First Name</label>
         <input name="firstName" value="{{person.firstName}}" />
       </div>
       <div>
         <label>Last Name</label>
-        <input name="lastName" value={{person.lastName}} />
+        <input name="lastName" value="{{person.lastName}}" />
       </div>
-      <button type="submit">Create Person</button>
+      <button type="submit">Save Person</button>
     </form>
   </dialog>
-</templize-element>
+</live-template>

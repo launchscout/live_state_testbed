@@ -34,4 +34,4 @@ import './patch-thing';
 import './display-error';
 import './live-state-element';
 import './dumb-form';
-import './templize-element';
+import 'live-template';
